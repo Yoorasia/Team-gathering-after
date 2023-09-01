@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/common.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <!--<link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        
+        <title>make one page</title>
+        
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="./js/script.js" type="js"></script>
+        <script>
+        jQuery(document).ready(function ($) {
+            var slideCount = $('#slide_2 ul li').length;
+            var slideWidth = $('#slide_2 ul li').width();
+            var slideHeight = $('#slide_2 ul li').height();
+            var sliderUlWidth = slideCount * slideWidth;
+
+            $('#slide_2').css({ width: slideWidth, height: slideHeight });
+            $('#slide_2 ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+            $('#slide_2 ul li:last-child').prependTo('#slide_2 ul');
+        //슬라이더가 왼쪽으로 이동하는 함수도 제작해봅니다.
+        function moveLeft() {
+            $('#slide_2 ul').animate({ //이미지가 있는 영역을 선택자로 불러와서, 그 태그의 left 속성을 애니메이션 메소드 부여시킴.
+                left: + slideWidth
+            }, 200, function () { //슬라이더의 여러 이미지들 중, 마지막 이미지를 맨 처음으로 보내줍니다.
+                $('#slide_2 ul li:last-child').prependTo('#slide_2 ul');
+                $('#slide_2 ul').css('left', '');
+            }); 
+        };
+        //슬라이더가 오른쪽으로 이동하는 함수를 제작해봅니다.
+        function moveRight() {
+            $('#slide_2 ul').animate({
+                left: - slideWidth
+            }, 200, function () { //슬라이더의 여러 이미지들 중, 첫번째 이미지를 맨 뒤로 보내줍니다.
+                $('#slide_2 ul li:first-child').appendTo('#slide_2 ul');
+                $('#slide_2 ul').css('left', '');
+            });
+        };
+        //prev 요소를 클릭하면 (페이지가 왼쪽으로 넘어가는 함수)를 호출해오는 구간
+            $('a.prev').click(function (event) {
+                event.preventDefault();
+                moveLeft();
+            });
+        //next 요소를 클릭하면 (페이지가 오른쪽으로 넘어가는 함수)를 호출해오는 구간
+            $('a.next').click(function (event) {
+            event.preventDefault();
+            moveRight();
+            });
+
+        /*Section_4======================================================================*/
+            $("dt").click(function(){
+                $(this).toggleClass("open");
+                    if($(this).hasClass("open"));
+                    $("dt").not(this).removeClass("open");
+                });
+            });
+        </script>   
+    </head>
+
+	<body>
+        <!--1.헤더섹션(Sun)-->
+    <header>
+        <section class="navbar">
+            <a href="#second" class="logo">SUMMER FESTIVAL</a>
+            <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+            <ul>
+                <li><a href="#third">Summer</a></li>
+                <li><a href="#fourth">Playlist</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="#sixth">Go to</a></li>
+                <div id="horizontal-underline"></div>
+            </ul>
+        </section>
+    </header>
+        <!--2.섹션1(Shine)-->
+    <section id="second">
+    <div class="overlay">
+        <h1 id="h1-1">Summer Festival</h1>
+        <p id="p1-1" class="second-date"><span class="span-0">청량지수 200% ♩</span> 듣기만 해도 시원-해지는 여름 아티스트🌊 </p>
+        <marquee> <span class="span-1">Seventeen</span> · <span class="span-2">Newjeans</span> ·  <span class="span-3"> Sistar </span></marquee>
+    </div>
+    <div id="second-images">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+    </div>
+    </section>
+        <!--3. 섹션2(Ddoza)-->
+    <section id="third">
+                <figure class="wrapper">
+                    <h2>Singer list</h2>
+                    <p>세븐틴, 씨스타, 뉴진스의 곡들로 무더위를 시원하게
+                    날려드립니다.</p>
+                    <div id="slide_2">
+                        <a href="#" class="next">&gt;</a>
+                        <a href="#" class="prev">&lt;</a>
+                    <ul>
+                        <li>SLIDE 1</li>
+                        <li><img src="./images/세븐틴1.png"></li>
+                        <li>SLIDE 2</li>
+                        <li><img src="./images/씨스타1.png"></li>
+                        <li>SLIDE 3</li>
+                        <li><img src="./images/뉴진스1.png"></li>
+                    </ul>  
+                    </div>
+            </figure>
+    </section>
+          <!--4.섹션3(Alice)-->
+    <section id="fourth">
+      <h2>Summer Playlist</h2>
+      <div class="wrapper">
+        <dl class="fourth-dl">
+            <dt class="dt-contents">
+                <img src="./images/리스트_뉴진스.jpg" width="250px">
+                <span>                
+                    <p><b>뉴진스(newjeans)</b></p>
+                    <p>Super Shy</p>
+                </span>
+                <dd><p>I'm super shy, super shy But wait a minute while I Make you mine, make you mine 떨리는 지금도 <br>
+                    You're on my mind All the time I wanna tell you but I'm Super shy, super shy<br>
+                    I'm super shy, super shy But wait a minute while I Make you mine, make you mine 떨리는 지금도 <br>
+                    You're on my mind All the time I wanna tell you but I'm Super shy, super shy</p>
+                </dd>
+        
+        <dt class="dt-contents">
+            <img src="./images/리스트_아주나이스.jpg" width="250px">
+            <span>                
+                <p><b>세븐틴(seventeen)</b></p>
+                <p>아주 Nice</p>
+            </span>
+        </dt>
+            <dd>
+                <p> 아침엔 모닝콜 필수던 내가 오늘은 번쩍 번쩍 눈이 떠지는가<br>
+                    데이트 날이라 그런지 어제 꿈도 좋은 꿈 꿨지 새 신발을 신고 (현관문을 열고 나가면)<br>
+                    오늘 날씨 너를 많이 닮아 너에게 가는 길은 꽃길이 되고 보일 듯 말듯한 네 마음 보인다면<br>
+                    (온몸이 간질간질 두근두근) 이 기분은 뭐야 어떡해 아주 NICE</p>
+            </dd>
+        
+        <dt class="dt-contents">
+            <img src="./images/리스트_씨스타.jpg" width="250px">
+            <span>                
+                <p><b>씨스타(sistar)</b></p>
+                <p>Touch My Body</p>
+            </span>
+        </dt>
+            <dd><p>우린 조금씩 빠르게 Oh everybody 푸른 하늘 보다 높이 지금 이 리듬이 좋아 뜨거운 태양아래 너와나<br>
+                My body body Touch ma body Baby so good 지금 기분은 paradise Baby so nice 우리 둘만의 summer night<br>
+                조금씩 one step two step 달빛 아래 너와나 My body body Touch ma body</p></dd>
+           
+        </article>
+    </div>
+  </section>
+
+    
+        <!--5. LYJ-->
+    <section id="fifth">
+        <figure id="cards">
+            <article id="card1">
+                <!--비누 방울 효과-->
+                <div class="card1_C1"></div>
+                <div class="card1_C2"></div>
+                <!--아이돌 설명-->  
+                <div class="card_ts">
+                    <p class="name">SISTAR</p>
+                    <p class="card_year">2010~2017 - 스타쉽 엔터테인먼트</p>
+                    <p class="card_text">
+                        씨스타는 대한민국의 4인조 걸 그룹으로 로엔 엔터테인먼트의 산하 레이블인 스타쉽 엔터테인먼트 소속 그룹이었다. 
+                        멤버 구성은 효린, 보라, 소유, 다솜으로 구성되어 있었다.
+                    </p>
+                </div>
+            </article>
+            <article id="card2">
+                <!--비누 방울 효과-->
+                <div class="card2_C1"></div>
+                <div class="card2_C2"></div>
+                <!--아이돌 설명-->
+                <div class="card_t">
+                    <p class="name">SEVENTEEN</p>
+                    <p class="card_year">2015 - 플레디스 엔터테인먼트</p>
+                    <p class="card_text">
+                        세븐틴은 플레디스 소속으로 2015년 5월 26일에 데뷔한 대한민국의 13인조 보이 그룹이다. 그룹 내에는 퍼포먼스, 보컬, 힙합팀이 존재한다. 
+                        '세븐틴'이라는 팀명은 팀 인원 13 + 3개의 유닛 하나의 캐럿+1로, 13+3+1=17 이란 뜻이다.
+                    </p>
+                </div>
+            </article>
+            <article id="card3">
+                <!--비누 방울 효과-->
+                <div class="card3_C1"></div>
+                <!--아이돌 설명-->
+                <div class="card_t">
+                    <p class="name">NEWJEANS</p>
+                    <p class="card_year">2022 - 어도어</p>
+                    <p class="card_text">NewJeans는 2022년 7월 22일에 데뷔한 대한민국의 5인조 걸 그룹으로, 소속사는 하이브 산하의 레이블인 어도어이다.
+                        SM 엔터테인먼트 비주얼 디렉터 출신으로 하이브에 영입된 민희진이 프로듀서로 나서서 발굴한 걸 그룹이다.</p>
+                    </figure>
+            </div>
+        </section>
+
+             <!--6.푸터섹션(Sia)-->
+    <section id="sixth">
+        <div class="wrapper">
+            <div class="ticket">
+                <h1 class="ticket-h1">티켓 예약</h1>
+                <p class="f-h2">Reservation to Ticket</p>
+            </div>
+            <div class="footerLine"></div>
+            <div class="general">
+                <h3 class="f-h3">General Admission</h3>
+                <div class="rewrapper">
+                    <div class="seat"><div class="seatWrapper"><span><div class="seatLine2"></div><p class="seatLabel2">TIER2</p></span><h4>일반석</h4></div></div>
+                    <p class="price">1,000 WON</p>
+                    <a href="./popup.html" target="_blank">
+                    <button class="footerButton1" href="#"><p class="bu-h2">예매하기</p>
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
+                        <g>
+                        <path class="path2" d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
+                        </g>
+                        </svg>
+                    </button>
+                    </a>
+                </div>
+            </div>
+            <div class="vip">
+                <h3 class="f-h3">VIP</h3>
+                <div class="rewrapper">
+                    <div class="seat"><div class="seatWrapper"><span><div class="seatLine1"></div><p class="seatLabel1">TIER1</p></span><h4>특별석</h4></div></div>
+                    <p class="price">2,000 WON</p>
+                <a href="./popup.html" target="_blank">
+                    <button class="footerButton2"><p class="bu-h2">예매하기</p>
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
+                        <g>
+                        <path class="path1" d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
+                        </g>
+                        </svg>
+                    </button>
+                </a>
+                </div>
+            </div>
+            <article class="footerNotice">
+                <h4 class="care">예매시 주의사항</h4>
+                <p class="carep">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br/>
+                    Recusandae quam obcaecati accusantium temporibus provident voluptates architecto suscipit vel velit,
+                    aspernatur odio enim? Reiciendis sint earum fugit necessitatibus ipsam illum vero.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+        <script src="js/script.js"></script>
+	</body>
+</html>

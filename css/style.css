@@ -1,0 +1,992 @@
+/*Header(SUN)=====================================================================================*/
+header {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  /* border-radius: 0 0 40px 40px; */
+  box-shadow: 0 10px 40px rgba(159, 162, 177, .8);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+.navbar .logo {
+  color: var(--mainColor1);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  /* 메뉴리스트는 가로로 배치되도록! */
+}
+
+.navbar li {
+  padding: 10px;
+  /* 메뉴 항목 내부 영역 공간 생성해주기 */
+}
+
+.navbar ul a {
+  display: inline-block;
+  color: var(--mainColor1);
+  font-size: 20px;
+  padding: 0 20px;
+}
+
+.navbar ul a:hover {
+  color: var(--mainColor3);
+  transition: .5s;
+}
+
+.main-nav ul a.active {
+  opacity: 1;
+  color: var(--subColor1);
+  transition: .5s;
+}
+
+/* underline */
+#horizontal-underline {
+  position: absolute;
+  width: 0;
+  background-color: var(--mainColor1);
+  border-radius: 3px;
+  top: 0;
+  left: 0;
+  height: 4px;
+  transition: .5s;
+}
+
+/* 햄버거메뉴 */
+.menu-toggle {
+  display: none;
+  /* 모바일 메뉴 버튼 일단 숨겨놓기! */
+  position: absolute;
+  cursor: pointer;
+  top: 30px;
+  right: 10px;
+  color: var(--white);
+  padding: .5rem;
+  transform: translate(-50%, -50%);
+}
+
+.menu-toggle span {
+  display: block;
+  background: var(--mainColor1);
+  width: 42px;
+  height: 4px;
+  border-radius: 3px;
+  transition: 0.25s margin 0.25s, 0.25s transform;
+}
+
+.menu-toggle span:nth-child(1) {
+  margin-bottom: 8px;
+}
+
+.menu-toggle span:nth-child(3) {
+  margin-top: 8px;
+}
+
+.menu-toggle.active span {
+  transition: 0.25s margin, 0.25s transform 0.25s;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  margin-top: 8px;
+  margin-bottom: -4px;
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(3) {
+  margin-top: -4px;
+  transform: rotate(135deg);
+}
+
+/* 모바일 메뉴 스타일 시작!*/
+@media only screen and (max-width: 720px) {
+  .navbar ul {
+    display: none;
+    /* 기본 상태에서는 메뉴를 숨기고 있다. */
+    flex-direction: column;
+    /* 가로로 되어 있던 메뉴 방향을 다시 세로로 떨궈준다. */
+    position: fixed;
+    /* 고정 위치- 탑 */
+    width: 100%;
+    top: 107px;
+    /* 상단 로고와 메뉴 아이콘이 보이도록 메뉴 시작라인을 좀 아래로 떨어뜨려서 시작해줌 */
+    background: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    line-height: 1.6;
+    padding: 20px 0;
+  }
+
+  .navbar.scale-up-hor-right {
+    -webkit-animation: scale-up-hor-right 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-hor-right 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  }
+
+  .navbar.mobile-nav ul {
+    display: flex;
+    /* 메뉴를 표시해주기! */
+  }
+
+  .menu-toggle {
+    display: block;
+    /* 모바일 메뉴 버튼 표시 */
+    cursor: pointer;
+    /* 마우스 커서 포인터 */
+    margin-top: 20px;
+  }
+}
+
+
+
+
+/*section 1번(SHINE)=====================================================================================*/
+#second {
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+#second h1 {
+  z-index: 10;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.second-date {
+  z-index: 10;
+  text-align: center;
+  border-top: 3px solid var(--grey);
+  border-bottom: 3px solid var(--grey);
+  padding: .5rem 0;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#second-images {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#second-images .slide {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation-duration: 36s;
+  animation-iteration-count: infinite;
+  animation-name: fade;
+  animation-timing-function: linear;
+}
+
+.slide:nth-child(1) {
+  background-image: url('../images/뉴진스1.png');
+}
+
+.slide:nth-child(2) {
+  background-image: url('../images/뉴진스2.png');
+  animation-delay: 4s;
+}
+
+.slide:nth-child(3) {
+  background-image: url('../images/뉴진스3.png');
+  animation-delay: 8s;
+}
+
+.slide:nth-child(4) {
+  background-image: url('../images/세븐틴1.png');
+  animation-delay: 12s;
+}
+
+.slide:nth-child(5) {
+  background-image: url('../images/세븐틴2.png');
+  animation-delay: 16s;
+}
+
+.slide:nth-child(6) {
+  background-image: url('../images/세븐틴3.png');
+  animation-delay: 20s;
+}
+
+.slide:nth-child(7) {
+  background-image: url('../images/씨스타1.png');
+  animation-delay: 24s;
+}
+
+.slide:nth-child(8) {
+  background-image: url('../images/씨스타2.png');
+  animation-delay: 28s;
+}
+
+.slide:nth-child(9) {
+  background-image: url('../images/씨스타3.png');
+  animation-delay: 32s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in;
+  }
+
+  8% {
+    opacity: 1;
+    transform: scale(1.05);
+    animation-timing-function: ease-out;
+  }
+
+  17% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  22% {
+    opacity: 0;
+    transform: scale(1.1) translateY(0%);
+  }
+
+  25% {
+    opacity: 0;
+    transform: scale(1.0) translateY(0%);
+  }
+}
+
+.overlay {
+  transform: translateX(50%);
+  transform: translateY(50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  z-index: 100;
+  color: white;
+
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+.overlay>marquee {
+  font-size: 30px;
+  font-family: 'DM Serif Display', serif;
+  text-shadow: 2px 4px 1px black;
+  letter-spacing: 10px;
+  transform: translateY(-40%);
+}
+
+#h1-1 {
+  font-size: 100px;
+  text-align: top;
+  mix-blend-mode: overlay;
+  font-weight: bold;
+  color: var(--mainColor3);
+  font-family: 'DM Serif Display', serif;
+  background: linear-gradient(to right top, var(--mainColor3), var(--mainColor2), var(--subColor2));
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+#p1-1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--mainColor2);
+}
+
+.span-1 {
+  color: var(--subColor1);
+}
+
+.span-2 {
+  color: var(--mainColor1);
+}
+
+.span-3 {
+  color: var(--mainColor2);
+}
+
+.span-0 {
+  color: var(--mainColor3);
+  text-shadow: 2px px 1px var(--subColor2);
+}
+
+
+.clippy {
+  z-index: -10;
+  clip-path: ellipse(50% 44% at 50% 50%);
+  background: linear-gradient(to bottom right, rgba(74, 211, 225, 0.4), rgba(43, 93, 151, 0.7));
+}
+
+/*section 2번(DDOZA)=====================================================================================*/
+#third {
+  margin: 0 auto;
+  background-image: linear-gradient(var(--light-green), var(--green));
+  padding: 6rem 0;
+  border-radius: 0 0 20% 20%;
+}
+
+#third .wrapper h2 {
+  background: linear-gradient(to bottom right, var(--subColor1), var(--mainColor2));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-family: 'DM Serif Display', serif;
+}
+
+
+#third p {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--white);
+}
+
+#slide_2 {
+  transform: translateX(-10%);
+  position: relative;
+  align-self: center;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  border-radius: 0 0 5rem 5rem;
+  width: 100vw;
+}
+
+#slide_2 ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#slide_2 ul li {
+  width: 60rem;
+  height: 30rem;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  background: #ccc;
+  text-align: center;
+  line-height: 300px;
+}
+
+#slide_2 ul li img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+}
+
+a.prev,
+a.next {
+  position: fixed;
+  top: 40%;
+  z-index: 100;
+  display: block;
+  padding: 4% 3%;
+  width: auto;
+  height: auto;
+  background: #2a2a2a;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+a.prev:hover,
+a.next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+a.prev {
+  border-radius: 0 2px 2px 0;
+}
+
+a.next {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+/*
+NEWS
+================================================ */
+#fourth {
+  margin: 0 auto;
+}
+
+#fourth h2 {
+  color: var(--mainColor1);
+  font-family: 'DM Serif Display', serif;
+  margin-bottom: 20px;
+}
+
+.fourth-dl {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.dt-contents {
+  width: 100%;
+  background: var(--mainColor2);
+  color: black;
+  font-weight: 600;
+  padding: 15px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all .5s ease-in-out;
+  border-radius: 20rem;
+  cursor: pointer;
+}
+
+dd {
+  display: none;
+  align-items: center;
+  background: var(--mainColor1);
+  color: #edeff3;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 1px 15px;
+  transition: all .5s;
+  border-radius: 0 0 5em 5rem;
+  padding-bottom: 5rem;
+  width: 65%;
+}
+
+.dt-contents:before {
+  opacity: 0;
+  transition: all .4s ease-in-out;
+}
+
+.dt-contents:hover {
+  cursor: pointer;
+}
+
+.dt-contents.open {
+  margin: 0 auto;
+  background: var(--mainColor1);
+  border-color: var(--mainColor1);
+  color: var(--white);
+}
+}
+
+.dt-contents.open:after {
+  transform: rotate(180deg) translateY(-2px);
+}
+
+.dt-contents.open:before {
+  opacity: 1;
+  transform: rotate(-360deg) translateY(-3px);
+}
+
+.dt-contents+dd {
+  max-height: 0px;
+}
+
+.dt-contents.open+dd {
+  text-align: center;
+  padding: 15px 15px 30px;
+  margin: 0 auto;
+  max-height: 400px;
+  display: block;
+  line-height: 1.5;
+}
+
+.dt-contents {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: var(--white);
+}
+
+.dt-contents img {
+  width: 10rem;
+  padding: .7rem;
+  border-radius: 50%;
+}
+
+.dt-contents span {
+  align-items: bottom;
+}
+
+/*LYJ
+================================================================================*/
+#fifth {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+#cards {
+  max-width: 1200px;
+  width: 800px;
+  padding: 100px 0;
+  position: relative;
+}
+
+#card1 {
+  height: 300px;
+  background-image: linear-gradient(0deg, var(--subColor1), var(--subColor2));
+  box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.5);
+  text-align: right;
+}
+
+#card2 {
+  height: 300px;
+  margin-top: 30px;
+  background-image: linear-gradient(0deg, var(--mainColor3), var(--subColor2));
+  box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.5);
+  text-align: left;
+}
+
+#card3 {
+  height: 300px;
+  margin-top: 30px;
+  background-image: linear-gradient(0deg, var(--mainColor2), var(--mainColor3));
+  box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.5);
+  text-align: right;
+}
+
+/*글자 효과---------------------*/
+.name {
+  padding: 0px 100px;
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+}
+
+.card_year {
+  padding: 0px 100px;
+  color: white;
+}
+
+.card_text {
+  text-align: left;
+  padding: 50px 100px;
+  color: white;
+}
+
+.card_t {
+  /*세븐틴, 뉴진스 카드 패딩*/
+  padding: 20px 0;
+}
+
+.card_ts {
+  /*씨스타 카드 패딩*/
+  padding-top: 30px;
+}
+
+/*비누방울 효과 -----------------------------------------------------------*/
+#card1 .card1_C1 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 2%;
+  left: -10%;
+  box-shadow: 0 8px 32px 0 rgba(170, 139, 44, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 70%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#card1 .card1_C2 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 20%;
+  right: -3%;
+  box-shadow: 0 8px 32px 0 rgba(170, 139, 44, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 70%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#card2 .card2_C1 {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 30%;
+  right: 50%;
+  box-shadow: 0 8px 32px 0 rgba(170, 139, 44, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 70%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#card2 .card2_C2 {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  bottom: 33%;
+  right: 40%;
+  box-shadow: 0 8px 32px 0 rgba(44, 113, 170, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 70%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#card3 .card3_C1 {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  bottom: 4%;
+  right: 10%;
+  box-shadow: 0 8px 32px 0 rgba(44, 113, 170, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 70%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/*footer
+=====================================================================================*/
+#sixth {
+  width: 100vw;
+  height: 100vh;
+  background: url(../images/세븐틴푸터.gif);
+  background-repeat: no-repeat;
+  background-position-y: 20%;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-blend-mode: overlay;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLine {
+  margin: 1rem 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(To right, white, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+  opacity: 70%;
+}
+
+
+.ticket {
+  width: 100%;
+  padding: 10px;
+  align-content: start;
+}
+
+.ticket-h1 {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: default;
+  text-align: left;
+  font-size: 2rem;
+}
+
+.f-h2 {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: default;
+  font-size: 1.2rem;
+}
+
+.f-h3 {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 10px;
+  cursor: default;
+}
+
+
+.rewrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 80px;
+}
+
+.rewrapper:hover {
+  background: rgba(0, 0, 0, 0.4);
+
+  .seat {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .seat span .seatLine1 {
+    width: 2.5rem;
+    transition: width 1s;
+  }
+
+  .seat span .seatLine2 {
+    width: 2.5rem;
+    transition: width 1s;
+  }
+
+  .footerButton2 {
+    background: var(--subColor1);
+    opacity: 80%;
+    transition: background 0.5s;
+  }
+
+  .footerButton2 .bu-h2 {
+    color: rgba(0, 0, 0, 0.8);
+    transition: color 0.5s;
+  }
+
+  .path1 {
+    fill: rgba(0, 0, 0, 0.8);
+    transition: fill 0.5s;
+  }
+
+  .footerButton1 {
+    background: var(--mainColor1);
+    opacity: 80%;
+    transition: background 0.5s;
+  }
+
+  .footerButton1 .bu-h2 {
+    color: rgba(0, 0, 0, 0.8);
+    transition: color 0.5s;
+  }
+
+  .path2 {
+    fill: rgba(0, 0, 0, 0.8);
+    transition: fill 0.5s;
+  }
+
+  .price {
+    color: white;
+    transition: color 0.5s;
+  }
+}
+
+
+.seat {
+  width: 25%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.seatLine1 {
+  width: 0px;
+  height: 1px;
+  background: var(--subColor1);
+}
+
+.seatLine2 {
+  width: 0px;
+  height: 1.2px;
+  background: var(--mainColor1);
+}
+
+.seatLabel1 {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--subColor1);
+  cursor: default;
+}
+
+.seatLabel2 {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--mainColor1);
+  cursor: default;
+}
+
+.seat span {
+  display: flex;
+  align-items: center;
+}
+
+.seat h4 {
+  color: white;
+  opacity: 70%;
+  cursor: default;
+}
+
+
+.price {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: default;
+}
+
+
+.footerButton1 {
+  width: 120px;
+  height: 50px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px 0 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1.5px solid var(--mainColor1);
+  cursor: pointer;
+}
+
+.footerButton2 {
+  width: 120px;
+  height: 50px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px 0 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--subColor1);
+  cursor: pointer;
+}
+
+.footerButton1>.bu-h2 {
+  color: rgba(43, 93, 151, 0.8);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.footerButton2>.bu-h2 {
+  color: rgba(239, 196, 131, 0.8);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+Button svg {
+  width: 1.2rem;
+}
+
+
+.footerNotice {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px 15px;
+  margin-top: 3rem;
+}
+
+.care {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: default;
+}
+
+.care:hover {
+  color: var(--mainColor2);
+}
+
+.carep {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+}
+
+.carep:hover {
+  color: var(--mainColor3);
+
+}
+
+.path1 {
+  fill: rgba(239, 196, 131, 0.8);
+}
+
+.path2 {
+  fill: rgba(43, 93, 151, 0.8);
+}
+
+/*
+DESKTOP SIZE
+================================================ */
+@media (min-width: 600px) {
+
+  /* Common */
+  h2 {
+    font-size: 5rem;
+  }
+
+  a:hover,
+  .ticket-btn:hover {
+    transition: .3s;
+  }
+
+  a:hover {
+    color: var(--blue);
+  }
+
+  .ticket-btn:hover {
+    background: var(--blue);
+  }
+
+  /* Header */
+  .btn-menu {
+    display: none;
+  }
+
+  .main-nav {
+    width: 100%;
+    position: static;
+    display: flex;
+  }
+
+  .main-nav li {
+    margin: 0 0 0 1.5rem;
+  }
+
+  /* second */
+  #second h1 {
+    font-size: 6.875rem;
+  }
+
+  .second-date {
+    font-size: 3rem;
+  }
+
+  /* third */
+  #third {
+    display: table-cell;
+  }
+
+  #third {
+    padding: 1.125rem 0 1rem 1rem;
+  }
+
+  #third>.wrapper {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  /* sixth */
+  #sixth h2 {
+    margin-bottom: 4rem;
+  }
+
+  .sixth-list {
+    margin-bottom: 3rem;
+  }
+
+  .sixth-text {
+    margin-left: 2rem;
+  }
+}
